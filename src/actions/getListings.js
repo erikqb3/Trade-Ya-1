@@ -44,8 +44,8 @@ export default async function getListings(params) {
 					},
 				],
 			},
-			skip: (parsedPage - 1) * parsedPageSize,
-			take: parsedPageSize,
+			// skip: (parsedPage - 1) * parsedPageSize,
+			// take: parsedPageSize,
 			orderBy: {
 				created_at: "desc",
 			},

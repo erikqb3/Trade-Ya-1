@@ -1,7 +1,8 @@
 "use client";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 import Input from "../FormHelpers/Input";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "../FormHelpers/Button";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -11,6 +12,9 @@ import SocialButton from "../FormHelpers/SocialButton";
 const SignupForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
+	const [showPassword, setShowPassword] = React.useState("false");
+	const [type, setType] = React.useState('password');
+	const [showOrHide, setShowOrdHide] = React.useState('Show');
 
 	const {
 		register,
@@ -22,11 +26,13 @@ const SignupForm = () => {
 			name: "",
 			email: "",
 			password: "",
+			myHistory: "[]",
 		},
 	});
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
+		console.log(data);
 		axios
 			.post("/api/register", data)
 			.then(() => {
@@ -40,6 +46,12 @@ const SignupForm = () => {
 				setIsLoading(false);
 			});
 	};
+
+	const onShowToggle = () => {
+		setShowPassword(!showPassword);
+		setType(showPassword ? "text": "password");
+		setShowOrdHide(showPassword ? "Hide" : "Show");
+	}
 
 	return (
 		<div className="authentication-area ptb-100 bg-color-fff5e1">
@@ -74,7 +86,7 @@ const SignupForm = () => {
 						<div className="form-group">
 							<Input
 								id="password"
-								type="password"
+								type={type}
 								placeholder="Password"
 								disabled={isLoading}
 								register={register}
@@ -83,11 +95,25 @@ const SignupForm = () => {
 							/>
 						</div>
 
+						<div className="passwordHelp"> 
+							{/* <span className="loginOption">
+								<Link
+									href="/"	
+								>
+									Forgot Password
+								</Link>
+							</span> */}
+							<span 
+								className="loginOption"
+								onClick={onShowToggle}
+							>{showOrHide} Password</span>
+						</div>
+
 						<div className="form-group mb-0">
 							<Button label="Register" disabled={isLoading} />
 						</div>
 					</form>
-					<SocialButton />
+					{/* <SocialButton /> */}
 				</div>
 			</div>
 		</div>

@@ -17,13 +17,13 @@ const Banner = () => {
 		<div className="banner-area bg-1">
 			<div className="container-fluid">
 				<div className="banner-content ptb-100">
-					<h1>Find Anything What You Want</h1>
+					<h1>There's Adventure <br></br>in Trading</h1>
 
 					<SearchForm />
 
 					<ul className="src-tag">
 						<li>
-							<span>Popular Search:</span>
+							<span>Search by Category:</span>
 						</li>
 						{categories.slice(0, 7).map((cat) => (
 							<li key={cat.label}>
@@ -51,27 +51,27 @@ const Banner = () => {
 						</li>
 					</ul>
 
-					<Image
+					{/* <Image
 						src={shape1}
 						width={122}
 						height={96}
 						className="shape shape-1"
 						alt="shape"
-					/>
-					<Image
+					/> */}
+					{/* <Image
 						src={shape2}
 						width={122}
 						height={96}
 						className="shape shape-2"
 						alt="shape"
-					/>
-					<Image
+					/> */}
+					{/* <Image
 						src={shape3}
 						width={122}
 						height={96}
 						className="shape shape-3"
 						alt="shape"
-					/>
+					/> */}
 				</div>
 
 				<div className="banner-img">

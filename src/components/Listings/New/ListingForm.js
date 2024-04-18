@@ -12,15 +12,18 @@ import Button from "@/components/FormHelpers/Button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+
 const RichTextEditor = dynamic(() => import("@mantine/rte"), {
 	ssr: false,
 	loading: () => null,
 });
 import RTEControls from "@/utils/RTEControls";
 
-const ListingForm = () => {
+const ListingForm = ({currentUser}) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
+
+	// console.log(currentUser);
 
 	const setCustomValue = (id, value) => {
 		setValue(id, value, {
@@ -47,8 +50,17 @@ const ListingForm = () => {
 			address: "",
 			features: "",
 			category: "",
-			location: null,
-			price: 1,
+			location: //arbitrary
+			{
+				flag: "US",
+				label:"United States",
+				
+				latlng: [40, 111],
+				region: "Americas",
+				value: "US"
+			},
+			quantity:1,
+			price: 0,
 		},
 	});
 
@@ -60,11 +72,13 @@ const ListingForm = () => {
 	const imageSrc = watch("imageSrc");
 
 	const onSubmit = (data) => {
+		console.log(data)
 		setIsLoading(true);
 		axios
 			.post("/api/listings/create", data)
 			.then((response) => {
 				toast.success("Listing created!");
+				// console.log(response, data)
 				router.refresh();
 				reset();
 			})
@@ -97,22 +111,6 @@ const ListingForm = () => {
 							/>
 						</div>
 						<div className="col-lg-12">
-							<div className="form-group">
-								<Controller
-									name="description"
-									control={control}
-									defaultValue=""
-									render={({ field }) => (
-										<RichTextEditor
-											controls={RTEControls}
-											{...field}
-											placeholder="Description"
-										/>
-									)}
-								/>
-							</div>
-						</div>
-						<div className="col-lg-12">
 							<ImageUpload
 								onChange={(value) =>
 									setCustomValue("imageSrc", value)
@@ -120,16 +118,6 @@ const ListingForm = () => {
 								value={imageSrc}
 							/>
 						</div>
-
-						<div className="col-lg-12">
-							<CountrySelect
-								value={location}
-								onChange={(value) =>
-									setCustomValue("location", value)
-								}
-							/>
-						</div>
-
 						<div className="col-lg-12">
 							<div className="form-group">
 								<Select
@@ -154,8 +142,34 @@ const ListingForm = () => {
 								/>
 							</div>
 						</div>
-
 						<div className="col-lg-12">
+							<div className="form-group">
+								<Controller
+									name="description"
+									control={control}
+									defaultValue=""
+									render={({ field }) => (
+										<RichTextEditor
+											controls={RTEControls}
+											{...field}
+											placeholder="Description"
+										/>
+									)}
+								/>
+							</div>
+						</div>
+						{/* <div className="col-lg-12">
+							<CountrySelect
+								value={location}
+								onChange={(value) =>
+									setCustomValue("location", value)
+								}
+							/>
+						</div> */}
+
+
+
+						{/* <div className="col-lg-12">
 							<Input
 								label="Address"
 								id="address"
@@ -166,36 +180,64 @@ const ListingForm = () => {
 								errors={errors}
 								required
 							/>
-						</div>
+						</div> */}
+
+
 
 						<div className="col-lg-12">
-							<div className="form-group">
-								<Controller
-									name="features"
-									control={control}
-									defaultValue=""
-									render={({ field }) => (
-										<RichTextEditor
-											controls={RTEControls}
-											{...field}
-										/>
-									)}
+								<div className="form-group">
+									<Controller
+										name="features"
+										control={control}
+										defaultValue=""
+										render={({ field }) => (
+											<RichTextEditor
+												controls={RTEControls}
+												{...field}
+												placeholder="Features"
+											/>
+										)}
+									/>
+								</div>
+							</div>
+
+
+
+
+						{(currentUser.role == "ADMIN") ? 
+							(
+								<>
+							<div className="col-lg-12">
+								<Input
+									label="Quanity"
+									id="quanity"
+									type="number"
+									min="0"
+									disabled={isLoading}
+									register={register}
+									errors={errors}
+									required
 								/>
 							</div>
-						</div>
-
-						<div className="col-lg-12">
+							<div className="col-lg-12">
 							<Input
 								label="Price"
 								id="price"
 								type="number"
-								placeholder="Features"
+								min="0"
 								disabled={isLoading}
 								register={register}
 								errors={errors}
 								required
 							/>
 						</div>
+								</>
+							):
+							(<></>)
+						}
+
+						
+
 
 						<Button disabled={isLoading} label={"Add Listing"} />
 					</div>

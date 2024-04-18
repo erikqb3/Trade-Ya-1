@@ -17,6 +17,7 @@ const ListingItem = ({
 	location_value,
 	currentUser,
 }) => {
+	// console.log(currentUser.id, user.id)
 	return (
 		<div className="col-lg-4 col-md-6">
 			<div className="single-featured box-shadow">
@@ -34,10 +35,14 @@ const ListingItem = ({
 						<h3>
 							<Link href={`/listing/${id}/${slug}`}>{title}</Link>
 						</h3>
-						<HeartButton currentUser={currentUser} listingId={id} />
 					</div>
 
-					<ul className="featured-info">
+					{((currentUser != null) && (currentUser.id != user.id) ) ? 
+					
+					<HeartButton currentUser={currentUser} listingId={id} /> : <></>}			
+					
+
+					{/* <ul className="featured-info">
 						<li>
 							<i className="ri-map-pin-line"></i>
 							{location_value}
@@ -50,9 +55,9 @@ const ListingItem = ({
 							<i className="ri-user-line"></i>
 							{user}
 						</li>
-					</ul>
+					</ul> */}
 
-					<ul className="priceing d-flex justify-content-between align-items-center">
+					<ul className="pricing d-flex justify-content-between align-items-center">
 						<li>
 							<Link
 								href={`/listings/?category=${category}`}
@@ -61,11 +66,11 @@ const ListingItem = ({
 								{category}
 							</Link>
 						</li>
-						<li>
+						{/* <li>
 							<span className="price">
 								{formattedPrice(price)}
 							</span>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</div>

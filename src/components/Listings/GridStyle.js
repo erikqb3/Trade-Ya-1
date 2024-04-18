@@ -43,17 +43,17 @@ const GridStyle = ({
 							<i className="ri-map-pin-line"></i>
 							{location_value}
 						</li>
-						<li>
+						{/* <li>
 							<i className="ri-time-line"></i>
 							{formatDate(created_at)}
 						</li>
 						<li>
 							<i className="ri-user-line"></i>
 							{user.name}
-						</li>
+						</li> */}
 					</ul>
 
-					<ul className="priceing d-flex justify-content-between align-items-center">
+					<ul className="pricing d-flex justify-content-between align-items-center">
 						<li>
 							<Link href="search-result.html" className="tag">
 								{category}

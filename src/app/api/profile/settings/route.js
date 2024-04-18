@@ -13,7 +13,7 @@ export async function POST(request) {
 
 	const body = await request.json();
 
-	const { name, image } = body;
+	const { name, image, email } = body;
 
 	let profile = await prisma.user.update({
 		where: {
@@ -22,6 +22,7 @@ export async function POST(request) {
 		data: {
 			name,
 			image,
+			email,
 		},
 	});
 

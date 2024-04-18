@@ -7,7 +7,7 @@ import ListStyle from "./ListStyle";
 
 const Index = ({ currentUser, listings, totalPages, searchParams }) => {
   const [listStyle, setListStyle] = useState("grid");
-
+  console.log(listings)
   return (
     <div className="featured-area for-dark-mode ptb-100">
       <div className="container">

@@ -23,6 +23,7 @@ const ListingItem = ({
 	},
 	currentUser,
 }) => {
+	console.log("listing_start", user, "listing_end")
 	return (
 		<div className="col-lg-4">
 			<div className="single-featured">
@@ -74,7 +75,7 @@ const ListingItem = ({
 						</li>
 					</ul>
 
-					<ul className="priceing d-flex justify-content-between align-items-center">
+					<ul className="pricing d-flex justify-content-between align-items-center">
 						<li>
 							<Link href="/search" className="tag">
 								{category}

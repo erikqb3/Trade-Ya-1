@@ -21,7 +21,7 @@ const SahreAndSave = ({ currentUser, listingId }) => {
 	const title = "Teor - Classified Ads & Directory Listing Next.js Template";
 	return (
 		<ul className="share-save">
-			<li>
+			{/* <li>
 				<div className="share-link">
 					<span>
 						<Image
@@ -62,7 +62,7 @@ const SahreAndSave = ({ currentUser, listingId }) => {
 						</li>
 					</ul>
 				</div>
-			</li>
+			</li> */}
 			<li className="save-list">
 				<HeartButton currentUser={currentUser} listingId={listingId} />
 			</li>

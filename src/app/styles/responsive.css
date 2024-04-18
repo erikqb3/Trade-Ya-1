@@ -170,7 +170,7 @@
   .single-featured .featured-content .featured-info li i {
     top: -3px;
   }
-  .single-featured .featured-content .priceing li .price {
+  .single-featured .featured-content .pricing li .price {
     font-size: 18px;
   }
   .single-featured.style-two {
@@ -188,7 +188,7 @@
   }
   /* Location Title */
   .single-location {
-    display: block !important;
+    /* display: block !important; */
     text-align: center;
   }
   .single-location img {
@@ -621,10 +621,10 @@
 /* Min width 576px to Max width 767px */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .container-fluid {
-    max-width: 540px;
+    /* max-width: 540px; */
   }
   .dark-mode-btn .container-fluid {
-    max-width: 540px;
+    /* max-width: 540px; */
   }
 }
 
@@ -687,7 +687,7 @@
   .banner-area .container-fluid {
     padding-left: 12px;
     padding-right: 12px;
-    max-width: 720px;
+    /* max-width: 720px; */
   }
   .banner-area .banner-img::before {
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.8)));
@@ -746,7 +746,7 @@
   .banner-hero-area .container-fluid {
     padding-left: 12px;
     padding-right: 12px;
-    max-width: 720px;
+    /* max-width: 720px; */
   }
   .hero-item {
     padding-top: 60px;
@@ -802,7 +802,7 @@
   .single-featured .featured-content .featured-info li i {
     top: -3px;
   }
-  .single-featured .featured-content .priceing li .price {
+  .single-featured .featured-content .pricing li .price {
     font-size: 18px;
   }
   .single-featured.style-two {
@@ -820,7 +820,7 @@
   }
   /* Location Title */
   .single-location {
-    display: block !important;
+    /* display: block !important; */
     text-align: center;
   }
   .single-location img {
@@ -1094,7 +1094,7 @@
     padding-top: 30px;
   }
   .dark-mode-btn .container-fluid {
-    max-width: 720px;
+    /* max-width: 720px; */
   }
   .single-testimony p {
     font-size: 16px;
@@ -1168,7 +1168,7 @@
   }
   /* Location Title */
   .single-location {
-    display: block !important;
+    /* display: block !important; */
     text-align: center;
   }
   .single-location img {

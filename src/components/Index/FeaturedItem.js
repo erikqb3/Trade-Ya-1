@@ -5,6 +5,7 @@ import locationSvg from "../../../public/images/icon/location-pin.svg";
 import clockSvg from "../../../public/images/icon/clock.svg";
 import profileSvg from "../../../public/images/icon/profile.svg";
 import { formattedPrice } from "@/utils/formattedPrice";
+import { shortenText } from "@/utils/shortenText";
 import { formatDate } from "@/utils/formatDate";
 import HeartButton from "../HeartButton";
 
@@ -29,7 +30,7 @@ const FeaturedItem = ({
 			<div className="featured-content">
 				<div className="d-flex justify-content-between align-items-center">
 					<h3>
-						<Link href={`/listing/${id}/${slug}`}>{title}</Link>
+						<Link href={`/listing/${id}/${slug}`}>{shortenText(title,10)}</Link>
 					</h3>
 					<HeartButton currentUser={currentUser} listingId={id} />
 				</div>
@@ -64,7 +65,7 @@ const FeaturedItem = ({
 					</li>
 				</ul>
 
-				<ul className="priceing d-flex justify-content-between align-items-center">
+				<ul className="pricing d-flex justify-content-between align-items-center">
 					<li>
 						<Link
 							href={`/listings/?category=${category}`}
@@ -73,9 +74,9 @@ const FeaturedItem = ({
 							{category}
 						</Link>
 					</li>
-					<li>
+					{/* <li>
 						<span className="price">{formattedPrice(price)}</span>
-					</li>
+					</li> */}
 				</ul>
 			</div>
 		</div>

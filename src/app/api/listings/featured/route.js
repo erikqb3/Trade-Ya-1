@@ -6,7 +6,22 @@ export async function GET(request) {
 
 	let listings;
 
-	if (category === "all") {
+	if ((category === "all")) {
+		listings = await prisma.listing.findMany({
+			orderBy: {
+				created_at: "desc",
+			},
+			include: {
+				user: {
+					select: {
+						name: true,
+						id: true,
+					},
+				},
+			},
+		});
+	} 
+	else if ((category === "mostRecent")){
 		listings = await prisma.listing.findMany({
 			orderBy: {
 				created_at: "desc",
@@ -21,7 +36,8 @@ export async function GET(request) {
 			},
 			take: 10,
 		});
-	} else {
+	}
+	else {
 		listings = await prisma.listing.findMany({
 			where: {
 				category: category,

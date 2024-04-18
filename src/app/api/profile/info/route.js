@@ -18,11 +18,6 @@ export async function POST(request) {
 		gender,
 		address,
 		phone,
-		website,
-		twitter,
-		facebook,
-		linkedin,
-		youtube,
 	} = body;
 
 	const infoExist = await prisma.profile.findFirst({
@@ -43,11 +38,6 @@ export async function POST(request) {
 				gender,
 				address,
 				phone,
-				website,
-				twitter,
-				facebook,
-				linkedin,
-				youtube,
 			},
 		});
 	} else {
@@ -57,11 +47,6 @@ export async function POST(request) {
 				gender,
 				address,
 				phone,
-				website,
-				twitter,
-				facebook,
-				linkedin,
-				youtube,
 				userId: currentUser.id,
 			},
 		});

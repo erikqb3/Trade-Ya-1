@@ -13,7 +13,7 @@ const Featured = ({ currentUser }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			await axios
-				.get(`/api/listings/featured?category=all`)
+				.get(`/api/listings/featured?category=mostRecent`)
 				.then((response) => {
 					setListings(response.data);
 				})
@@ -37,11 +37,11 @@ const Featured = ({ currentUser }) => {
 			});
 	};
 	return (
-		<div className="featured-area bg-color-fffcf8 ptb-100">
+		<div className="offer-area bg-color-fffcf8 featured-ads">
 			<div className="container">
 				<div className="section-title-wrap">
 					<div className="section-title left-title">
-						<h2>Featured Ads</h2>
+						<h2>Featured Trades</h2>
 					</div>
 
 					<div className="section-title-right">
@@ -53,58 +53,58 @@ const Featured = ({ currentUser }) => {
 									}`}
 									onClick={() => getFeatured("all")}
 								>
-									All
+									Most Recent
 								</button>
 							</li>
 							<li className="nav-item">
 								<button
 									className={`nav-link default-btn ${
-										cat === "Bar" && "active"
+										cat === "Automotive" && "active"
 									}`}
-									onClick={() => getFeatured("Bar")}
+									onClick={() => getFeatured("Automotive")}
 								>
-									Bar
+									Automotive
 								</button>
 							</li>
 							<li className="nav-item">
 								<button
 									className={`nav-link default-btn ${
-										cat === "Restaurant" && "active"
+										cat === "Apparel" && "active"
 									}`}
-									onClick={() => getFeatured("Restaurant")}
+									onClick={() => getFeatured("Apparel")}
 								>
-									Restaurant
+									Apparel
 								</button>
 							</li>
 
 							<li className="nav-item">
 								<button
 									className={`nav-link default-btn ${
-										cat === "Modern" && "active"
+										cat === "Electronics" && "active"
 									}`}
-									onClick={() => getFeatured("Modern")}
+									onClick={() => getFeatured("Electronics")}
 								>
-									Modern
+									Electronics
 								</button>
 							</li>
 							<li className="nav-item">
 								<button
 									className={`nav-link default-btn ${
-										cat === "Real Estate" && "active"
+										cat === "Entertainment" && "active"
 									}`}
-									onClick={() => getFeatured("Real Estate")}
+									onClick={() => getFeatured("Entertainment")}
 								>
-									Real Estate
+									Entertainment
 								</button>
 							</li>
 							<li className="nav-item">
 								<button
 									className={`nav-link default-btn ${
-										cat === "Vehicle" && "active"
+										cat === "Family" && "active"
 									}`}
-									onClick={() => getFeatured("Vehicle")}
+									onClick={() => getFeatured("Family")}
 								>
-									Vehicle
+									Family
 								</button>
 							</li>
 						</ul>
@@ -116,20 +116,20 @@ const Featured = ({ currentUser }) => {
 				<div className="tab-content">
 					<div className="tab-pane fade show active">
 						<Swiper 
-							spaceBetween={30}
+							spaceBetween={15}
 							grabCursor={true}
 							pagination={{
 								clickable: true,
 							}}
 							breakpoints={{
 								0: {
-									slidesPerView: 1,
-								},
-								768: {
 									slidesPerView: 2,
 								},
-								1200: {
+								768: {
 									slidesPerView: 4,
+								},
+								1200: {
+									slidesPerView: 6,
 								},
 							}}
 							navigation={true}

@@ -3,6 +3,7 @@ import React from "react";
 import ListingItem from "./ListingItem";
 
 const ListingCard = ({ currentUser, favourites }) => {
+	console.log("favourites_start",favourites,"favourites_end")
 	return (
 		<div className="featured-area bg-color-fff5e1 ptb-100">
 			<div className="container">

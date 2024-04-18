@@ -1,0 +1,24 @@
+/*# sourceMappingURL=customCSS_erik.css.map */
+
+
+//min-width:0
+@mixin mobLogin{
+  .passwordHelp{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom: 15px;
+    .loginOption{
+      font-size: 80%;
+      &:hover{
+        color:#f0002a;
+        cursor:pointer;
+      }
+    }
+  }
+}
+//min-width:760px
+@mixin minLogin{}
+//min-width:992px
+@mixin medLogin{}
+//min-width:1200px
+@mixin maxLogin{}

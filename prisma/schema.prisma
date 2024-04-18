@@ -2,149 +2,186 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
-    id             Int         @id @default(autoincrement())
-    name           String?
-    email          String?     @unique
-    emailVerified  DateTime?
-    image          String?
-    hashedPassword String?
-    role           Role        @default(USER)
-    created_at     DateTime    @default(now())
-    updated_at     DateTime    @updatedAt
-    accounts       Account[]
-    profile        Profile?
-    listings       Listing[]
-    favourites     Favourite[]
-    reviews        Review[]
-    blogs          Blog[]
+  id             Int          @id @default(autoincrement())
+  name           String?
+  email          String?      @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  role           Role         @default(USER)
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+  accounts       Account[]
+  profile        Profile?
+  listings       Listing[]
+  favourites     Favourite[]
+  reviews        Review[]
+  blogs          Blog[]
+  myHistory      String?
+  FR_Sender      FR_Sender?
+  FR_Receiver    FR_Receiver?
 }
 
 model Profile {
-    id       Int     @id @default(autoincrement())
-    userId   Int     @unique
-    bio      String? @db.Text
-    gender   String?
-    address  String?
-    phone    String?
-    website  String?
-    twitter  String?
-    facebook String?
-    linkedin String?
-    youtube  String?
-    user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id      Int     @id @default(autoincrement())
+  userId  Int     @unique
+  bio     String? @db.Text
+  gender  String?
+  address String?
+  phone   String?
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
-    id                Int     @id @default(autoincrement())
-    userId            Int
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String?
-    access_token      String? @db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? @db.Text
-    session_state     String?
+  id                Int     @id @default(autoincrement())
+  userId            Int
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@unique([provider, providerAccountId])
-    @@index([userId])
+  @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Listing {
-    id             Int      @id @default(autoincrement())
-    userId         Int
-    title          String
-    slug           String
-    description    String   @db.Text
-    imageSrc       String
-    address        String
-    features       String   @db.Text
-    created_at     DateTime @default(now())
-    category       String
-    location_value String
-    price          Int
-    status         Status   @default(Pending)
-    latitude       Float
-    longitude      Float
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  title          String
+  slug           String
+  description    String   @db.Text
+  imageSrc       String
+  address        String
+  features       String   @db.Text
+  created_at     DateTime @default(now())
+  category       String
+  location_value String
+  price          Int
+  quantity       Int
+  status         Status   @default(Pending)
+  latitude       Float
+  longitude      Float
 
-    user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-    reviews    Review[]
-    favourites Favourite[]
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviews     Review[]
+  favourites  Favourite[]
+  tradeOffers TradeOffer? @relation(fields: [id], references: [id])
 
-    @@index([userId])
+  @@index([userId])
 }
 
 model Favourite {
-    id         Int      @id @default(autoincrement())
-    userId     Int
-    listingId  Int
-    created_at DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  listingId  Int
+  created_at DateTime @default(now())
 
-    user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-    listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 
-    @@index([userId, listingId])
+  @@index([userId, listingId])
+}
+
+model FriendRequest {
+  id         Int      @id @default(autoincrement())
+  accepted   Int
+  created_at DateTime @default(now())
+  senderId   Int
+  receiverId Int
+
+  sender   FR_Sender   @relation(fields: [senderId], references: [userId], onDelete: Cascade)
+  receiver FR_Receiver @relation(fields: [receiverId], references: [userId], onDelete: Cascade)
+}
+
+model FR_Sender {
+  id            Int             @id @default(autoincrement())
+  userId        Int             @unique
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  FriendRequest FriendRequest[]
+}
+
+model FR_Receiver {
+  id            Int             @id @default(autoincrement())
+  userId        Int             @unique
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  FriendRequest FriendRequest[]
+}
+
+model TradeOffer {
+  id            Int       @id @default(autoincrement())
+  ownerId       Int
+  traderId      Int
+  listingId     Int
+  offers        Listing[]
+  tradeDescript String
+  created_at    DateTime  @default(now())
+
+  @@index([ownerId, traderId])
 }
 
 model Review {
-    id         Int      @id @default(autoincrement())
-    rating     Int
-    comment    String?  @db.Text
-    userId     Int
-    user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-    listingId  Int
-    listing    Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
-    created_at DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  rating     Int
+  comment    String?  @db.Text
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listingId  Int
+  listing    Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
 
-    @@index([userId, listingId])
+  @@index([userId, listingId])
 }
 
 model Blog {
-    id         Int      @id @default(autoincrement())
-    title      String
-    slug       String
-    content    String   @db.Text
-    imageSrc   String
-    category   String
-    userId     Int
-    created_at DateTime @default(now())
-    user       User     @relation(fields: [userId], references: [id])
+  id         Int      @id @default(autoincrement())
+  title      String
+  slug       String
+  content    String   @db.Text
+  imageSrc   String
+  category   String
+  userId     Int
+  created_at DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
 
-    @@index([userId])
+  @@index([userId])
 }
 
 model Subscription {
-    id           Int          @id @default(autoincrement())
-    email        String
-    is_subscribe IS_SUBSCRIBE @default(Enable)
-    created_at   DateTime     @default(now())
+  id           Int          @id @default(autoincrement())
+  email        String
+  is_subscribe IS_SUBSCRIBE @default(Enable)
+  created_at   DateTime     @default(now())
 }
 
 enum Role {
-    USER
-    ADMIN
+  USER
+  ADMIN
 }
 
 enum Status {
-    Pending
-    Approved
+  Pending
+  Approved
 }
 
 enum IS_SUBSCRIBE {
-    Enable
-    Disabled
+  Enable
+  Disabled
 }

@@ -43,7 +43,7 @@ const Navbar = ({ currentUser }) => {
 							<Link className="navbar-brand" href="/">
 								<Image
 									src={logo}
-									width={120}
+									width={240}
 									height={40}
 									className="main-logo"
 									alt="logo"
@@ -86,10 +86,20 @@ const Navbar = ({ currentUser }) => {
 												currentRoute === "/listings" ? "active" : "non-active"
 											}`}
 										>
-											Listing
+											Listings
 										</Link>
 									</li>
 									<li className="nav-item">
+										<Link
+											href="/traders"
+											className={`nav-link ${
+												currentRoute === "/traders" ? "active" : "non-active"
+											}`}
+										>
+											Traders
+										</Link>
+									</li>
+									{/* <li className="nav-item">
 										<Link
 											href="/about-us"
 											className={`nav-link ${
@@ -98,7 +108,7 @@ const Navbar = ({ currentUser }) => {
 										>
 											About Us
 										</Link>
-									</li>
+									</li> */}
 									<li className="nav-item">
 										<Link
 											href="/faq"
@@ -106,10 +116,10 @@ const Navbar = ({ currentUser }) => {
 												currentRoute === "/faq" ? "active" : "non-active"
 											}`}
 										>
-											Faq
+											FAQ
 										</Link>
 									</li>
-									<li className="nav-item">
+									{/* <li className="nav-item">
 										<Link
 											href="/blog"
 											className={`nav-link ${
@@ -118,16 +128,24 @@ const Navbar = ({ currentUser }) => {
 										>
 											Blog
 										</Link>
-									</li>
+									</li> */}
 
 									<li className="nav-item">
-										<Link
-											href="/contact-us"
+										{/* <Link
+											href="/shop"
 											className={`nav-link ${
-												currentRoute === "/contact-us" ? "active" : "non-active"
+												currentRoute === "/shop" ? "active" : "non-active"
 											}`}
 										>
 											Contact Us
+										</Link> */}
+										<Link
+											href="/shop"
+											className={`nav-link ${
+												currentRoute === "/shop" ? "active" : "non-active"
+											}`}
+										>
+											Shop
 										</Link>
 									</li>
 								</ul>
@@ -154,44 +172,6 @@ const Navbar = ({ currentUser }) => {
 						</nav>
 					</div>
         </div>
-
-        {/* <div className="others-option-for-responsive">
-				<div className="container">
-					<div className="dot-menu">
-						<div className="inner">
-							<div className="circle circle-one"></div>
-							<div className="circle circle-two"></div>
-							<div className="circle circle-three"></div>
-						</div>
-					</div>
-
-					<div className="container">
-						<div className="option-inner">
-							<div className="others-options justify-content-center">
-								<ul>
-									<UserMenu currentUser={currentUser} />
-									<li>
-										<Link
-											href="/dashboard/listings/add-listing"
-											className="default-btn"
-										>
-											<span>
-												Add Listing
-												<Image
-													src={plushSvg}
-													width={18}
-													height={18}
-													alt="plush"
-												/>
-											</span>
-										</Link>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> */}
       </div>
     </>
   );

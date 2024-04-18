@@ -99,7 +99,7 @@ Dark Mode Area Style
 }
 
 .theme-dark .desktop-nav .navbar .others-options ul li .call-us {
-  color: #582949;
+  color: #424F50;
 }
 
 .theme-dark .desktop-nav .navbar .navbar-nav .nav-item.mega-menu .dropdown-menu .sub-menu li a {
@@ -185,7 +185,7 @@ Dark Mode Area Style
   color: #f0002a;
 }
 
-.theme-dark .single-featured .featured-content .priceing li .price {
+.theme-dark .single-featured .featured-content .pricing li .price {
   color: #f0002a;
 }
 
@@ -359,7 +359,7 @@ Dark Mode Area Style
   color: #f0002a;
 }
 
-.theme-dark .single-featured .featured-content .priceing li .tag:hover {
+.theme-dark .single-featured .featured-content .pricing li .tag:hover {
   border-color: #ffffff;
   color: #ffffff;
 }
@@ -404,7 +404,7 @@ Dark Mode Area Style
   background-color: #f0002a;
 }
 
-.theme-dark .single-featured .featured-content .priceing li .tag {
+.theme-dark .single-featured .featured-content .pricing li .tag {
   border: 1px solid #141a28;
 }
 
@@ -508,7 +508,7 @@ Dark Mode Area Style
           filter: brightness(10);
 }
 
-.theme-dark .single-featured .featured-content .priceing li .tag:hover {
+.theme-dark .single-featured .featured-content .pricing li .tag:hover {
   background-color: #111111 !important;
   color: #ffffff;
 }

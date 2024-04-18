@@ -24,20 +24,11 @@ const InfoUpdateForm = ({ currentUser }) => {
 			address:
 				currentUser && currentUser.address ? currentUser.address : "",
 			phone: currentUser && currentUser.phone ? currentUser.phone : "",
-			website:
-				currentUser && currentUser.website ? currentUser.website : "",
-			twitter:
-				currentUser && currentUser.twitter ? currentUser.twitter : "",
-			facebook:
-				currentUser && currentUser.facebook ? currentUser.facebook : "",
-			linkedin:
-				currentUser && currentUser.linkedin ? currentUser.linkedin : "",
-			youtube:
-				currentUser && currentUser.youtube ? currentUser.youtube : "",
 		},
 	});
 
 	const onSubmit = async (data) => {
+		console.log(data)
 		setIsLoading(true);
 		axios
 			.post("/api/profile/info", data)
@@ -72,7 +63,7 @@ const InfoUpdateForm = ({ currentUser }) => {
 								required
 							/>
 						</div>
-						<div className="form-group">
+						{/* <div className="form-group">
 							<Input
 								id="gender"
 								placeholder="Gender"
@@ -81,7 +72,7 @@ const InfoUpdateForm = ({ currentUser }) => {
 								errors={errors}
 								required
 							/>
-						</div>
+						</div> */}
 						<div className="form-group">
 							<Input
 								id="address"
@@ -100,51 +91,6 @@ const InfoUpdateForm = ({ currentUser }) => {
 								register={register}
 								errors={errors}
 								required
-							/>
-						</div>
-						<div className="form-group">
-							<Input
-								id="website"
-								placeholder="Website"
-								disabled={isLoading}
-								register={register}
-								errors={errors}
-							/>
-						</div>
-						<div className="form-group">
-							<Input
-								id="twitter"
-								placeholder="Twitter"
-								disabled={isLoading}
-								register={register}
-								errors={errors}
-							/>
-						</div>
-						<div className="form-group">
-							<Input
-								id="facebook"
-								placeholder="Facebook"
-								disabled={isLoading}
-								register={register}
-								errors={errors}
-							/>
-						</div>
-						<div className="form-group">
-							<Input
-								id="linkedin"
-								placeholder="Linkedin"
-								disabled={isLoading}
-								register={register}
-								errors={errors}
-							/>
-						</div>
-						<div className="form-group">
-							<Input
-								id="youtube"
-								placeholder="Youtube"
-								disabled={isLoading}
-								register={register}
-								errors={errors}
 							/>
 						</div>
 						<div className="form-group mb-0">

@@ -14,6 +14,8 @@ import getBlogPosts from "@/actions/getBlogPosts";
 
 const page = async () => {
 	const blogPosts = await getBlogPosts();
+
+	// console.log(blogPosts)
 	return (
 		<>
 			<PageBanner pageTitle="About Us" />

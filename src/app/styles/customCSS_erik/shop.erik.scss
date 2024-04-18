@@ -1,0 +1,31 @@
+@mixin mobShop{
+  body{
+    .shop{
+        // background-color: red;
+        .container-fluid{
+          .tab-content{
+            .tab-pane{
+              .swiper{
+                .swiper-wrapper{
+                  flex-wrap: wrap;
+                  justify-content:center;
+                  .swiper-slide{
+                    margin:0 auto!important;
+                  }
+                }
+                .swiper-pagination{
+                  display:none;
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+}
+//min-width:760px
+@mixin minShop{}
+//min-width:992px
+@mixin medShop{}
+//min-width:1200px
+@mixin maxShop{}

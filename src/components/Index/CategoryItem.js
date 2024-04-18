@@ -5,12 +5,12 @@ import globalSearch from "../../../public/images/global-search.png";
 const CategoryItem = ({ category, onSelect }) => {
 	return (
 		<li onClick={onSelect}>
-			<Image
+			{/* <Image
 				src={globalSearch}
 				alt="globalSearch"
 				width="18"
 				height="18"
-			/>{" "}
+			/>{" "} */}
 			{category}
 		</li>
 	);

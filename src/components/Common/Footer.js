@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import logo from "../../../public/images/logo.png";
+import logo from "../../../public/images/logo_alt.png";
 // import whiteLogo from "../../../../public/images/white-logo.png";
 import phoneCell from "../../../public/images/icon/phone-call.svg";
 import locationPin from "../../../public/images/icon/location-pin.svg";
@@ -12,7 +12,7 @@ import menuActive from "../../../public/images/menu-active.png";
 const Footer = () => {
 	return (
 		<>
-			<div className="footer-area pt-100 pb-70 bg-color-fffcf8">
+			<div className="footer-area pt-100 pb-70">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-4 col-sm-6">
@@ -260,7 +260,7 @@ const Footer = () => {
 				</div>
 			</div>
 
-			<div className="copy-right-area bg-color-fcf1e3">
+			{/* <div className="copy-right-area bg-color-fcf1e3">
 				<div className="container">
 					<div className="copy-right-content">
 						<p>
@@ -275,7 +275,7 @@ const Footer = () => {
 						</p>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</>
 	);
 };

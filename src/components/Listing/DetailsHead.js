@@ -46,14 +46,13 @@ const DetailsHead = ({
 							width={18}
 							height={18}
 						/>
-						ID: TR-{id}-S
 					</li>
 				</ul>
 			</li>
 
 			<li className="review-wraps">
-				<h3>{formattedPrice(price)}</h3>
-				<RatingStars rating={rating} />
+				{(price? <h3>{formattedPrice(price)}</h3>:<></>)}
+				{/* <RatingStars rating={rating} /> */}
 			</li>
 		</ul>
 	);

@@ -6,6 +6,7 @@ import axios from "axios";
 import searchZoom from "../../../public/images/icon/search-zoom-in.svg";
 import locationIco from "../../../public/images/icon/location.svg";
 import globalIco from "../../../public/images/icon/global.svg";
+import searchIcon from"../../../public/images/icon/plush.svg"
 import CategoryFind from "./CategoryFind";
 import LocationFind from "./LocationFind";
 import { toast } from "react-hot-toast";
@@ -19,11 +20,22 @@ const SearchForm = () => {
 	const [LocationValue, setLocationValue] = useState("");
 	const router = useRouter();
 
+	const [titles, setTitles] = useState([]);
+	const [title, setTitle] = useState('');
+	const [titleSuggest, setTitleSuggest] = useState(false);
+
+
+	// const handleSearch = useCallback(() => {
+	// 	router.push(
+	// 		`/listings?category=${category}&location_value=${LocationValue}`
+	// 	);
+	// }, [category, LocationValue, router]);
+
 	const handleSearch = useCallback(() => {
 		router.push(
-			`/listings?category=${category}&location_value=${LocationValue}`
+			`/listings?title=${title}`
 		);
-	}, [category, LocationValue, router]);
+	}, [title, router]);
 
 	const handleCategorySelect = (cat) => {
 		setCatSuggest(false);
@@ -32,6 +44,10 @@ const SearchForm = () => {
 	const handleLocationSelect = (loc) => {
 		setLocSuggest(false);
 		setLocationValue(loc);
+	};
+	const handleTitleSelect = (ttle) => {
+		setTitleSuggest(false);
+		setTitle(ttle);
 	};
 
 	const categoryFind = useCallback((catValue) => {
@@ -42,7 +58,7 @@ const SearchForm = () => {
 					setCategories(response.data);
 				})
 				.catch((error) => {
-					toast.error("Something went wromg!");
+					toast.error("Something went wrong!");
 				});
 
 			setCatSuggest(true);
@@ -60,6 +76,20 @@ const SearchForm = () => {
 				});
 
 			setLocSuggest(true);
+		}
+	}, []);
+	const titleFind = useCallback((ttleValue) => {
+		if (ttleValue) {
+			axios
+				.get(`/api/titles/${ttleValue}`)
+				.then((response) => {
+					setTitles(response.data);
+				})
+				.catch((error) => {
+					toast.error("Something went wromg!");
+				});
+
+			setTitleSuggest(true);
 		}
 	}, []);
 
@@ -80,29 +110,29 @@ const SearchForm = () => {
 									type="text"
 									className="form-control"
 									placeholder="Type what are you looking for..."
-									value={category}
+									value={title}
 									onChange={(e) => {
-										setCategory(e.target.value);
-										categoryFind(e.target.value);
+										setTitle(e.target.value);
+										titleFind(e.target.value);
 									}}
 								/>
-								<Image
-									src={globalIco}
+								{/* <Image
+									src={searchIcon}
 									width="20"
 									height="20"
 									alt="global"
-								/>
+								/> */}
 
-								{categories.length > 0 && catSuggest && (
+								{/* {categories.length > 0 && catSuggest && (
 									<CategoryFind
 										categories={categories}
 										onSelect={handleCategorySelect}
 									/>
-								)}
+								)} */}
 							</div>
 						</div>
 
-						<div className="col-lg-6 col-md-6 p-0">
+						{/* <div className="col-lg-6 col-md-6 p-0">
 							<div className="form-group position-relative">
 								<input
 									type="text"
@@ -128,19 +158,19 @@ const SearchForm = () => {
 									/>
 								)}
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 				<div className="col-lg-3 ps-0">
 					<button type="submit" className="default-btn">
 						<span>
 							Search Now
-							<Image
+							{/* <Image
 								src={searchZoom}
 								width="20"
 								height="20"
 								alt="search"
-							/>
+							/> */}
 						</span>
 					</button>
 				</div>

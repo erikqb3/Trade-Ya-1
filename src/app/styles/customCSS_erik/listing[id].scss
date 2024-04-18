@@ -1,0 +1,21 @@
+/*# sourceMappingURL=customCSS_erik.css.map */
+
+
+//min-width:0
+@mixin mobListing_ID{
+  .bg-right-sidebar{
+    .MyPayPal{
+      // background-color: green;
+      // border: 5px solid green;
+      div > div > div:nth-child(2){
+        display:none !important;
+      }
+    }
+  }
+}
+//min-width:760px
+@mixin minListing_ID{}
+//min-width:992px
+@mixin medListing_ID{}
+//min-width:1200px
+@mixin maxListing_ID{}

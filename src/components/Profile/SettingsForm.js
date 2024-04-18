@@ -38,6 +38,7 @@ const SettingsForm = ({ currentUser }) => {
 	const image = watch("image");
 
 	const onSubmit = (data) => {
+		console.log(data);
 		setIsLoading(true);
 		axios
 			.post("/api/profile/settings", data)
@@ -52,6 +53,7 @@ const SettingsForm = ({ currentUser }) => {
 				setIsLoading(false);
 			});
 	};
+
 
 	return (
 		<div className="authentication-area ptb-100 bg-color-fff5e1">

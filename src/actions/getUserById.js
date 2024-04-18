@@ -3,7 +3,6 @@ import prisma from "@/libs/prismadb";
 export default async function getUserById(params) {
 	try {
 		const { userId } = params;
-
 		const user = await prisma.user.findUnique({
 			where: {
 				id: parseInt(userId),
@@ -11,7 +10,7 @@ export default async function getUserById(params) {
 			include: {
 				profile: true,
 				listings: {
-					take: 6,
+					// take: 6,
 				},
 				// favourites: true,
 			},

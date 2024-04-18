@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -7,10 +8,14 @@ import { useRouter } from "next/navigation";
 import Input from "../FormHelpers/Input";
 import Button from "../FormHelpers/Button";
 import SocialButton from "../FormHelpers/SocialButton";
+import { createSearchParamsBailoutProxy } from "next/dist/client/components/searchparams-bailout-proxy";
 
 const SigninForm = () => {
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
+	const [showPassword, setShowPassword] = React.useState("false");
+	const [type, setType] = React.useState('password');
+	const [showOrHide, setShowOrdHide] = React.useState('Show');
 
 	const {
 		register,
@@ -26,13 +31,12 @@ const SigninForm = () => {
 
 	const onSubmit = (data) => {
 		setIsLoading(true);
-
 		signIn("credentials", {
 			...data,
 			redirect: false,
 		}).then((callback) => {
 			setIsLoading(false);
-
+			
 			if (!callback?.error) {
 				toast.success("Logged in");
 				router.refresh();
@@ -43,6 +47,12 @@ const SigninForm = () => {
 			}
 		});
 	};
+
+	const onShowToggle = () => {
+		setShowPassword(!showPassword);
+		setType(showPassword ? "text": "password");
+		setShowOrdHide(showPassword ? "Hide" : "Show");
+	}
 
 	return (
 		<div className="authentication-area ptb-100 bg-color-fff5e1">
@@ -67,7 +77,7 @@ const SigninForm = () => {
 						<div className="form-group">
 							<Input
 								id="password"
-								type="password"
+								type={type}
 								placeholder="Password"
 								disabled={isLoading}
 								register={register}
@@ -75,12 +85,25 @@ const SigninForm = () => {
 								required
 							/>
 						</div>
+						<div className="passwordHelp"> 
+							<span className="loginOption">
+								<Link
+									href="/"	
+								>
+									Forgot Password
+								</Link>
+							</span>
+							<span 
+								className="loginOption"
+								onClick={onShowToggle}
+							>{showOrHide} Password</span>
+						</div>
 
 						<div className="form-group mb-0">
 							<Button label="Login" disabled={isLoading} />
 						</div>
 					</form>
-					<SocialButton />
+					{/* <SocialButton /> */}
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,85 @@
+/*# sourceMappingURL=customCSS_erik.css.map */
+@mixin mobIndex{ //min-width:0
+  a.hover,
+  .default-btn:hover{
+    background-color:rgb(175,0,0);
+    border-color:rgb(175,0,0);
+    color:white;
+  }
+  .navbar-toggler,
+  .navbar-toggler-right{
+    color:rgb(240,0,42);
+    border-color:rgb(240,0,42);
+    background: rgb(240,0,42) !important;
+    border-radius: 5px;
+    &:not(.collapsed){
+      background: rgb(175,0,0) !important;
+    }
+    .icon-bar{
+      color:white;
+      background:white;
+    }
+  }
+
+.single-featured{
+  .featured-image{
+    
+  }
+}
+
+  .footer-area{
+    background-color:#424F50;
+    margin-top: 5rem;
+    color:#AFAFAF;
+    .container{
+      .row{
+        h3{
+          color:#AFAFAF;
+          text-decoration:underline;
+        }
+        ul{
+          li{
+            color:#AFAFAF;
+            img{
+              top: 7.5px;
+            }
+            span,
+            a:link,
+            a:visited{
+              color:#AFAFAF;
+            }
+            &:hover,
+            &:focus,
+            &:active{
+              span,
+              a:link,
+              a:visited{
+                color:rgb(250,0,0);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@mixin minIndex{ //min-width:760px
+
+}
+@mixin medIndex{ //min-width:992px
+  .navbar{
+    .navbar-brand{
+      margin-right: 25px;
+    }
+    .navbar-collapse{
+      .navbar-nav{
+        .nav-item > .nav-link{
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+@mixin maxIndex{ //min-width:1200px
+
+}

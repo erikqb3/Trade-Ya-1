@@ -11,9 +11,9 @@ export async function DELETE(request, { params }) {
 	if (!userId) {
 		throw new Error("Invalid ID");
 	}
-	if (parseInt(userId) === currentUser.id) {
-		return NextResponse.error();
-	}
+	// if (parseInt(userId) === currentUser.id) {
+	// 	return NextResponse.error();
+	// }
 
 	const deletedUser = await prisma.user.delete({
 		where: {
